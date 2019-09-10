@@ -33,23 +33,23 @@ var newGame = function() {
     answerText.textContent = answerWord.join(" ");
 };
 
-newGame();
+console.log(answer);
+answerText.textContent = answerWord.join(" ");
 
 document.onkeyup = function(event) {
-    answerText.textContent = answerWord.join(" ");
     var userGuess = event.key;
+    answerText.textContent = answerWord.join(" ");
     for (var j = 0; j < answer.length; j++) {
         if (answer[j] === userGuess) {
             answerWord[j] = userGuess;
             remainingLetters--;
-            answerWord.textContent = answerWord;
         }
     }
     if ((remainingLetters <= (answer.length)) && guessesLeft > 1) {
-        
+        // If letters still remain and guesses are left, continue.
         } else if (remainingLetters <= (answer.length)) {
-
+            // If letters still remain (but no guesses), you lose.
         } else {
-
+            // If no letters remain, you win.
         }
 }
