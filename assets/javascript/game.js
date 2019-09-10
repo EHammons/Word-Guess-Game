@@ -3,6 +3,8 @@ var losses = 0;
 var guessesLeft = 12;
 var answerWord = [];
 var alreadyGuessed = "";
+var remainingLetters = 0;
+
 
 var answers = ["dog","cat","bird","lizzard"];
 var answer = answers[Math.floor(Math.random()*answers.length)];
@@ -11,7 +13,6 @@ for (var i = 0; i<answer.length; i++) {
 }
 var remainingLetters = answer.length;
 
-var answerIndex = 0;
 
 var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
@@ -22,6 +23,7 @@ var answerText = document.getElementById("word-text");
 winsText.textContent = wins;
 lossesText.textContent = losses;
 leftText.textContent = guessesLeft;
+answerText.textContent = answerWord;
 
 var newGame = function() {
     guessesLeft = 12;
@@ -34,12 +36,20 @@ var newGame = function() {
 newGame();
 
 document.onkeyup = function(event) {
-    if ((answerIndex <= (answers[i].length - 1)) && guessesLeft > 1) {
-        // If there are still more letters and guesses, take the next guess input.
-    } else if (answerIndex <= (answers[i].length - 1)) {
-        // If there are still more letters, you lose.
-    } else {
-        // If there are no more letters left to guess, you win.
+    answerText.textContent = answerWord.join(" ");
+    var userGuess = event.key;
+    for (var j = 0; j < answer.length; j++) {
+        if (answer[j] === userGuess) {
+            answerWord[j] = userGuess;
+            remainingLetters--;
+            answerWord.textContent = answerWord;
+        }
     }
+    if ((remainingLetters <= (answer.length)) && guessesLeft > 1) {
+        
+        } else if (remainingLetters <= (answer.length)) {
 
-};
+        } else {
+
+        }
+}
